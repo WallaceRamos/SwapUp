@@ -10,11 +10,11 @@ import styles from './styles';
 import UserImagePicker from '../../components/UserImagePicker';
 
 export default function SignUp() {
-  const [name, setName] = useState('cadeira');
-  const [email, setEmail] = useState('cadeira@mail.com');
-  const [birthdate, setBirthdate] = useState('21/08/2000');
-  const [address, setAddress] = useState('rua bairro cidade estado');
-  const [password, setPassword] = useState('12345678');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [address, setAddress] = useState('');
+  const [password, setPassword] = useState('');
  
 
   const navigation = useNavigation();
