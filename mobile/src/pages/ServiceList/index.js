@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import { FlatList, AsyncStorage, TouchableOpacity, Text, Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { withNavigationFocus } from '@react-navigation/compat';
 
 import api from '../../services/api';
 
@@ -8,7 +9,7 @@ import styles from './styles';
 
 import logo from '../../assets/logo.png';
 
-export default function ServiceList() {
+function ServiceList({ isFocused }) {
   const navigation = useNavigation();
   const [service, setService] = useState([]);
 
@@ -32,9 +33,12 @@ export default function ServiceList() {
   }
 
   useEffect(() => {
-    LoadNome();
-    loadService();
-  }, []);
+    if(isFocused){
+      LoadNome();
+      loadService();
+    }
+    
+  }, [isFocused]);
 
   async function refresList() {
     setRefreshing(true);
@@ -108,3 +112,4 @@ export default function ServiceList() {
     </>
   );
 }
+export default withNavigationFocus(ServiceList);

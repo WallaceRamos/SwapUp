@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, AsyncStorage, TouchableOpacity, Text, Image, View, ScrollView, RefreshControl } from 'react-native';
+import { AsyncStorage, TouchableOpacity, Text, Image, View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { withNavigationFocus } from '@react-navigation/compat';
+
 
 import api from '../../services/api';
 
@@ -8,11 +10,11 @@ import styles from './styles';
 
 import logo from '../../assets/logo.png';
 
-export default function Perfil() {
+function Perfil({ isFocused }) {
   const navigation = useNavigation();
   const [nome, setNome] = useState();
   const [userPerfil, setUserPerfil] = useState('');
-  const [refreshing, setRefreshing] = useState(false);
+
 
   async function LoadNome() {
     const nome = await AsyncStorage.getItem('userName');
@@ -20,28 +22,23 @@ export default function Perfil() {
     return;
   }
   async function loadUserDetalhe() {
-    setRefreshing(true);
+  
     const userId = await AsyncStorage.getItem('userId')
     const response = await api.get(`/users/${userId}`);
     setUserPerfil(response.data);
-    setRefreshing(false);
+   
   }
 
   useEffect(() => {
-    LoadNome();
-    loadUserDetalhe();
+    if(isFocused){
+      LoadNome();
+      loadUserDetalhe();
+    }
+    
 
-  }, []);
+  }, [isFocused]);
 
-  //função de atualizar
-  async function refresList() {
-    setRefreshing(true);//o icone aparece 
 
-    await loadUserDetalhe();//carrega a pagina
-    await LoadNome();
-
-    setRefreshing(false);//o icone desaparece
-  }
 
   async function handleSubmitUpdate() {
     navigation.navigate('PerfilUpdate')
@@ -74,7 +71,7 @@ export default function Perfil() {
           </View>
 
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresList} />}>
+        <ScrollView >
         <View style={styles.signoutContainer}>
         <TouchableOpacity onPress={handleSignout} style={styles.signout}>
           <Text style={styles.signoutText}>signout</Text>
@@ -112,3 +109,4 @@ export default function Perfil() {
     </>
   );
 }
+export default withNavigationFocus(Perfil);

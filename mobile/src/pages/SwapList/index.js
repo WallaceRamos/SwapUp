@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, FlatList, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import {  FlatList, AsyncStorage, TouchableOpacity,  Text, Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { withNavigationFocus } from '@react-navigation/compat';
 
 import api from '../../services/api';
 
 import styles from './styles';
 
-import logo from '../../assets/logo.png';
-
-export default function SwapList() {
+ function SwapList({ isFocused }) {
 
   const [swaping, setSwaping] = useState([]);
 
@@ -33,9 +32,12 @@ export default function SwapList() {
   }
 
   useEffect(() => {
+  if(isFocused){
     LoadNome();
     loadSwap();
-  }, []);
+  }
+
+  }, [isFocused]);
 
   async function refresList() {
     setRefreshing(true);
@@ -92,3 +94,4 @@ export default function SwapList() {
     </>
   );
 }
+export default withNavigationFocus(SwapList);
