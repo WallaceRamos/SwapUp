@@ -14,7 +14,10 @@ Este projeto foi iniciado com o aplicativo Expo  que é uma estrutura e uma plat
 Um aplicativo em que os usuários cadastrados podem publicar e solicitar serviços através de um formulário podendo adicionar uma imagem a publicação. Em que após a solicitação o proprietário da postagem receberá uma notificação em que pode confirmar ou negar a solicitação. Quando a solicitação for confirmada o usuário após finalização do serviço poderá indicar que foi finalizado através de um click.
 
 ## 👨‍💻  Instalação
-  
+Pré-Requisitos
+```bash
+git, node, express, knex, sqlite, react, react-native, expo
+  ```
 Para instalar as dependências e executar o **Backend** (modo desenvolvimento), clone o projeto em seu computador  em seguida execute:
 ```bash
 cd backend
@@ -25,6 +28,8 @@ Para instalar o **Banco de Dados**, faça uma conta no [MongoDB](https://www.mon
 
 Para instalar as dependências e executar o **Mobile** (modo desenvolvimento) do React-Native, clone o projeto em seu computador e em seguida execute:
 ```bash
+yarn global add install expo-cli
+# NÃO é preciso executar a linha de cima caso ja tenha o Expo (CLI) instalado!
 cd mobile
 yarn install
 yarn start
