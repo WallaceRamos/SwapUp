@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import { Alert, TouchableOpacity, TextInput, Text, Image, View, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { mask } from 'remask';
 
@@ -52,7 +53,7 @@ export default function SignUp() {
   };
   
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}>
     <ScrollView  showsVerticalScrollIndicator={false}>
       <View style={styles.form}>
         <Text style={styles.title}>Criar conta SwapUp</Text>
@@ -119,6 +120,6 @@ export default function SignUp() {
         </TouchableOpacity>
       </View>
     </ScrollView>
-  </View>
+  </KeyboardAvoidingView>
   );
 }

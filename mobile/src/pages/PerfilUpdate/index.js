@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 
-import { Alert, KeyboardAvoidingView, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { mask } from 'remask';
 
@@ -69,11 +70,12 @@ export default function PerfilUpdate() {
 
 
       </View>
+      <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}>
       <View style={styles.container} >
 
         <Text style={styles.title}>Lista de Postagem de serviços para serem solicitados. </Text>
 
-
+       
         <ScrollView style={styles.container}>
 
 
@@ -138,6 +140,7 @@ export default function PerfilUpdate() {
 
 
       </View>
+      </KeyboardAvoidingView>
     </>
   );
 }

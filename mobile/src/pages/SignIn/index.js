@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, KeyboardAvoidingView, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../../services/api';
 
@@ -46,7 +47,8 @@ async function handleSubmitRegister(){
 
   }
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}>
+  
     <ScrollView>
       <View style={styles.logoContainer} >
         <Image source={logo} />

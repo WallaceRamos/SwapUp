@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, StatusBar, KeyboardAvoidingView, AsyncStorage, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import { Alert, StatusBar, KeyboardAvoidingView, TouchableOpacity, TextInput, Text, Image, View, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
@@ -55,8 +57,8 @@ export default function CreatePost() {
    };
   return (
     <>
+     <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={Platform.select({ios: 0, android: 500})}>
     
-    <View style={styles.container} >
 
       <View style={styles.header}>
         <View style={styles.headerContainerLogo}>       
@@ -132,7 +134,7 @@ export default function CreatePost() {
         </ScrollView>
   
 
-    </View>
+    </KeyboardAvoidingView>
     </>
   );
 }

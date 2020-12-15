@@ -5,8 +5,10 @@ import {
   View,
   TouchableOpacity,
   Image,
-  AsyncStorage
+  
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import * as ImagePicker from 'expo-image-picker';
 
 export default class UserImagePicker extends React.Component {
